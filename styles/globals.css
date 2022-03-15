@@ -1,16 +1,87 @@
+@font-face {
+  font-family: 'open_sans_condensedbold';
+  src: url('/fonts/open-condensed.eot');
+  src: url('/fonts/open-condensed.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/open-condensed.woff') format('woff'),
+       url('/fonts/open-condensed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ubuntu_condensed';
+  src: url('/fonts/ubuntu.eot');
+  src: url('/fonts/ubuntu.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/ubuntu.woff') format('woff'),
+       url('/fonts/ubuntu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'ubuntu_condensed', sans-serif;
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: #009E95;
 }
 
 a {
-  color: inherit;
+  color: rgba(255,255,255,0.9);
   text-decoration: none;
 }
+a:hover {
+  text-decoration: underline;
+}
 
-* {
-  box-sizing: border-box;
+h1 {
+  margin: 10px 0px 17px;
+  font-size: 70px;
+  line-height: 70px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px 2px 0px;
+  font-family: 'open_sans_condensedbold';
+}
+h2 {
+  margin: 20px 0px;
+  font-size: 50px;
+  line-height: 50px;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.3) 0px 2px 0px;
+  font-family: 'open_sans_condensedbold';
+}
+h3 {
+  margin: 10px 0px;
+  font-size: 30px;
+  font-family: 'open_sans_condensedbold';
+  line-height: 30px;
+  color: rgb(20, 97, 97);
+  text-shadow: 0 1px rgba(255,255,255,0.3);
+}
+h4 {
+  margin: 10px 0px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+h5 {
+  margin: 10px 0px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+}
+h6 {
+  margin: 10px 0px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 700;
+}
+p {
+  color: rgb(232, 255, 255);
+  font-size: 22px;
+  line-height: 30px;
+  text-shadow: 0 1px rgba(0,0,0,0.2);
 }
