@@ -25,7 +25,7 @@ body {
   color: white;
   font-size: 16px;
   line-height: 24px;
-  background-color: #009E95;
+  background-color: #0d1117;
 }
 
 a {
@@ -38,8 +38,8 @@ a:hover {
 
 h1 {
   margin: 10px 0px 17px;
-  font-size: 70px;
-  line-height: 70px;
+  font-size: 30px;
+  line-height: 30px;
   text-align: center;
   text-transform: uppercase;
   text-shadow: rgba(0, 0, 0, 0.5) 0px 2px 0px;
@@ -47,8 +47,8 @@ h1 {
 }
 h2 {
   margin: 20px 0px;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 30px;
+  line-height: 30px;
   text-align: center;
   text-shadow: rgba(0, 0, 0, 0.3) 0px 2px 0px;
   font-family: 'open_sans_condensedbold';
