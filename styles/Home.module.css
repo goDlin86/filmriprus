@@ -4,9 +4,7 @@
 
 .header {
   position: fixed;
-  top: 13px;
-  left: 0;
-  right: 0;
+  top: 15px;
   padding: 0 20px;
   font-size: 40px;
   background-color: black;
@@ -31,28 +29,29 @@
   font-size: 26px;
 }
 
+.main {
+  margin-top: 70px;
+} 
 .day {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 22px;
   margin: 20px 0;
-  margin-left: 400px;
   color: antiquewhite;
   font-size: 26px;
   background-color: black;
   font-family: 'open_sans_condensedbold';
-  z-index: 2;
+  padding-left: 20px;
 }
-
-.films {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+.films_container {
+  overflow: scroll;
   margin: 20px 0;
+}
+.films {
+  display: flex;
+  flex-direction: row;
 }
 
 .film {
   position: relative;
+  margin-right: 10px;
 }
 .film a {
   position: absolute;
