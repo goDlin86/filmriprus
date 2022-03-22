@@ -51,7 +51,7 @@
 
 .film {
   position: relative;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .film a {
   position: absolute;
@@ -59,8 +59,55 @@
   right: 0;
   background: linear-gradient(black 50%, transparent);
 }
+.film .more {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.film .description {
+  overflow: scroll;
+  padding: 5px;
+  background: rgba(0,0,0,0.7);
+  max-height: 320px;
+}
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s ease-in;
+}
+.film .description .info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  margin-bottom: 10px;
+}
+.film .description .info_header {
+  color: antiquewhite;
+}
+.film .description .year {
+  font-size: 28px;
+}
+.film .description .rating_green {
+  font-size: 28px;
+  color: greenyellow;
+}
+.film .description .rating_yellow {
+  font-size: 24px;
+  color: goldenrod;
+}
+.film .button {
+  background: rgba(0,0,0,0.7);
+  cursor: pointer;
+}
 .film img {
   display: block;
   margin: 0 auto;
-  max-width: 300px;
+  width: 300px;
 }

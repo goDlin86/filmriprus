@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import FilmDescription from '../components/FilmDescription'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -31,7 +32,8 @@ export default function Home() {
       <Head>
         <title>FILMrip</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#ffffff"></meta>
+        <link rel="icon" href="/movie.svg" />
       </Head>
 
       <div className={styles.header}>
@@ -52,6 +54,7 @@ export default function Home() {
                       <h1>{film[1]}</h1>
                     </a>
                     <img alt={film[1]} src={film[3]} />
+                    <FilmDescription id={film[2]} />
                   </div>
                 ))}
               </div>
