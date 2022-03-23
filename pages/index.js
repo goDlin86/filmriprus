@@ -56,6 +56,7 @@ export default function Home() {
                   <FilmDescription id={film[2]} />
                 </div>
               ))}
+              <div className={styles.empty}></div>
             </div>
           </div>
         ))}

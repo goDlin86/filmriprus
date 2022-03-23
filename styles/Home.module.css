@@ -42,15 +42,14 @@
   overflow: scroll;
   margin: 20px -20px;
   display: flex;
-  flex-direction: row;
 }
 
 .film {
   position: relative;
   margin-left: 20px;
 }
-.film:last-child {
-  margin-right: 20px;
+.empty {
+  min-width: 20px;
 }
 .film a {
   position: absolute;
@@ -117,5 +116,8 @@
 @media only screen and (max-width: 768px) {
   .header .date {
     margin-left: 30px;
+  }
+  .day {
+    text-align: center;
   }
 }
