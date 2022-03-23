@@ -33,8 +33,8 @@ const FilmDescription = ({ id }) => {
               <div className={styles.info_header}>Жанр</div>
               <div className={styles.info_header}>Год</div>
               <div className={styles.info_header}>Рейтинг</div>
-              <div>{desc.countries.map(c => <div>{c.country}</div>)}</div>
-              <div>{desc.genres.map(g => <div>{g.genre}</div>)}</div>
+              <div>{desc.countries.map((c, i) => <div key={i}>{c.country}</div>)}</div>
+              <div>{desc.genres.map((g, i) => <div key={i}>{g.genre}</div>)}</div>
               <div className={styles.year}>{desc.year}</div>
               <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
             </div>
