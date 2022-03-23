@@ -5,7 +5,6 @@
 .header {
   position: fixed;
   top: 15px;
-  padding: 0 20px;
   font-size: 40px;
   background-color: black;
   font-family: 'open_sans_condensedbold';
@@ -38,19 +37,19 @@
   font-size: 26px;
   background-color: black;
   font-family: 'open_sans_condensedbold';
-  padding-left: 20px;
 }
 .films_container {
   overflow: scroll;
-  margin: 20px 0;
-}
-.films {
+  margin: 20px -20px;
   display: flex;
   flex-direction: row;
 }
 
 .film {
   position: relative;
+  margin-left: 20px;
+}
+.film:last-child {
   margin-right: 20px;
 }
 .film a {
@@ -68,7 +67,7 @@
 }
 .film .description {
   overflow: scroll;
-  padding: 5px;
+  padding: 10px 5px;
   background: rgba(0,0,0,0.7);
   max-height: 320px;
 }
@@ -113,4 +112,10 @@
   display: block;
   margin: 0 auto;
   width: 300px;
+}
+
+@media only screen and (max-width: 768px) {
+  .header .date {
+    margin-left: 30px;
+  }
 }

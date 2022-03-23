@@ -47,17 +47,15 @@ export default function Home() {
           <div key={i}>
             <div className={styles.day}>{new Date(date.day).toLocaleDateString('ru-Ru', { day: 'numeric', weekday: 'long' })}</div>
             <div className={styles.films_container}>
-              <div className={styles.films}>
-                {date.films.map((film, j) => (
-                  <div className={styles.film} key={j}>
-                    <a href={`https://kinopoisk.ru/film/${film[2]}`} target='_blank' rel='noreferrer'>
-                      <h1>{film[1]}</h1>
-                    </a>
-                    <img alt={film[1]} src={film[3]} />
-                    <FilmDescription id={film[2]} />
-                  </div>
-                ))}
-              </div>
+              {date.films.map((film, j) => (
+                <div className={styles.film} key={j}>
+                  <a href={`https://kinopoisk.ru/film/${film[2]}`} target='_blank' rel='noreferrer'>
+                    <h1>{film[1]}</h1>
+                  </a>
+                  <img alt={film[1]} src={film[3]} />
+                  <FilmDescription id={film[2]} />
+                </div>
+              ))}
             </div>
           </div>
         ))}

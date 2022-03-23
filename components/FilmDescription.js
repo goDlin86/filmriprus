@@ -36,7 +36,7 @@ const FilmDescription = ({ id }) => {
               <div>{desc.countries.map((c, i) => <div key={i}>{c.country}</div>)}</div>
               <div>{desc.genres.map((g, i) => <div key={i}>{g.genre}</div>)}</div>
               <div className={styles.year}>{desc.year}</div>
-              <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
+              <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6.5 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
             </div>
             {desc.description}
           </>
