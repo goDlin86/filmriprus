@@ -23,6 +23,13 @@ const FilmDescription = ({ id }) => {
     }
   }
 
+  const searchTorrents = async () => {
+    const res = await fetch('api/getTorrents')
+    // const data = await res.json()
+
+    console.log(res)
+  }
+
   return (
     <div className={styles.more}>
       <div className={show ? `${styles.description} ${styles.visible}` : `${styles.description} ${styles.hidden}`}>
@@ -38,6 +45,7 @@ const FilmDescription = ({ id }) => {
               <div className={styles.year}>{desc.year}</div>
               <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6.5 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
             </div>
+            <div onClick={searchTorrents}>Torrents</div>
             {desc.description}
           </>
           : 'Загрузка'}

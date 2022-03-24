@@ -49,10 +49,10 @@ export default function Home() {
             <div className={styles.films_container}>
               {date.films.map((film, j) => (
                 <div className={styles.film} key={j}>
+                  <img alt={film[1]} src={film[3]} />
                   <a href={`https://kinopoisk.ru/film/${film[2]}`} target='_blank' rel='noreferrer'>
                     <h1>{film[1]}</h1>
                   </a>
-                  <img alt={film[1]} src={film[3]} />
                   <FilmDescription id={film[2]} />
                 </div>
               ))}

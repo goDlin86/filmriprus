@@ -47,6 +47,11 @@
 .film {
   position: relative;
   margin-left: 20px;
+  min-width: 300px;
+  height: 450px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: black;
 }
 .empty {
   min-width: 20px;
@@ -55,7 +60,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  background: linear-gradient(black 50%, transparent);
+  background: linear-gradient(rgba(0,0,0,0.8) 50%, transparent);
 }
 .film .more {
   position: absolute;
@@ -109,8 +114,9 @@
 }
 .film img {
   display: block;
-  margin: 0 auto;
+  position: absolute;
   width: 300px;
+  height: 450px;
 }
 
 @media only screen and (max-width: 768px) {
