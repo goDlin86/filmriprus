@@ -1,4 +1,4 @@
-import RutrackerApi from 'rutracker-api'
+import RutrackerApi from 'rutracker-api-2'
 
 export default async (req, res) => {
   //const { year, month } = req.query
