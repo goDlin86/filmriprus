@@ -41,12 +41,10 @@ export default async (req, res) => {
           o: '4', //sort downloads
           s: '1' //asc order
         },
-        responseType: 'arraybuffer',
         headers: {
           'Accept-Encoding': 'gzip, deflate, br',
           'Cookie': cookie, //+ ' opt_js={%22only_new%22:2}',
-          'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0',
-          'Content-Type': 'application/json; application/octet-stream; application/x-www-form-urlencoded'
+          'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0'
         }
       }
 
@@ -54,8 +52,9 @@ export default async (req, res) => {
         if (error) {
           console.log(error)
         } else {
-          console.log(response.data)
-          res.status(200).json(response.data)
+          const html = await response.text()
+          console.log(html)
+          res.status(200).send(html)
         }
       })
     }
