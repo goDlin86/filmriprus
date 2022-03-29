@@ -1,11 +1,10 @@
 import request from 'request'
-import { Cheerio } from 'cheerio'
+import * as cheerio from 'cheerio'
 import iconv from 'iconv-lite'
 
 export default async (req, res) => {
   const { q } = req.query
 
-  console.log(q)
   const options = {
     url: 'http://rutracker.org/forum/login.php', 
     form: {
@@ -44,7 +43,7 @@ export default async (req, res) => {
           console.log(error)
         } else {
           const body1 = iconv.decode(Buffer.from(body), 'win1251')
-          var $ = Cheerio.load(body1),
+          var $ = cheerio.load(body1),
               topics = $('tr[class="hl-tr"]'),
               topicsArray = []
           for (let i = 0; i < topics.length; i++){
