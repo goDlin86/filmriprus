@@ -53,8 +53,8 @@ export default async (req, res) => {
         if (error) {
           console.log(error)
         } else {
-          console.log(response)
-          res.status(200).json(response)
+          console.log(response.data)
+          res.status(200).json(response.data)
         }
       })
     }
