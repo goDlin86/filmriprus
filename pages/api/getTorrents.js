@@ -43,8 +43,7 @@ export default async (req, res) => {
         if (error) {
           console.log(error)
         } else {
-          console.log(body)
-          const body1 = iconv.decode(body, 'win1251')
+          const body1 = iconv.decode(Buffer.from(body), 'win1251')
           var $ = Cheerio.load(body1),
               topics = $('tr[class="hl-tr"]'),
               topicsArray = []
