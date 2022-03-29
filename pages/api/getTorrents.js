@@ -56,8 +56,8 @@ export default async (req, res) => {
             topicsArray.push({ title, href })
           }
           
-          console.log($.html())
-          res.status(200).json(topicsArray)
+          //res.status(200).json(topicsArray)
+          res.status(200).json({html: $.html()})
         }
       })
     }
