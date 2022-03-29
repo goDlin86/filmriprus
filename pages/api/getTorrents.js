@@ -48,7 +48,7 @@ export default async (req, res) => {
         }
       }
 
-      request.post(options, (error, response, body) => {
+      request.post(options, async (error, response, body) => {
         if (error) {
           console.log(error)
         } else {
