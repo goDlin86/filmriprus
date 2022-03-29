@@ -26,6 +26,8 @@ export default async (req, res) => {
 
       const options = {
         url: 'http://rutracker.org/forum/tracker.php',
+        encoding: null,
+        gzip: true,
         form: {
           nm: 'Отец The Father',
           o: '4', //sort downloads
