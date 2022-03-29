@@ -1,25 +1,16 @@
 import request from 'request'
+import { Cheerio } from 'cheerio'
+import iconv from 'iconv-lite'
 
 export default async (req, res) => {
   //const { q } = req.query
-
-  // try {
-  //   const rutracker = new RutrackerApi()
-  //   await rutracker.login({ username: process.env.RUTRACKER_LOGIN, password: process.env.RUTRACKER_PASSWORD })
-  //   const torrents = await rutracker.search({ query: 'Отец Father', sort: 'size' })
-  //   console.log(torrents)
-  //   res.status(200).json(torrents)
-  // }
-  // catch (e) {
-  //   console.log(e)
-  // }
 
   const options = {
     url: 'http://rutracker.org/forum/login.php', 
     form: {
       login_username: process.env.RUTRACKER_LOGIN,
       login_password: process.env.RUTRACKER_PASSWORD,
-      login: 'Вход' //'%C2%F5%EE%E4'
+      login: 'Вход'
     },
     headers: {
       'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0',
@@ -52,9 +43,19 @@ export default async (req, res) => {
         if (error) {
           console.log(error)
         } else {
-          const html = await response.text()
-          console.log(html)
-          res.status(200).send(html)
+          const body1 = iconv.decode(body, 'win1251')
+          var $ = Cheerio.load(body1),
+              topics = $('tr[class="hl-tr"]'),
+              topicsArray = []
+          for (let i = 0; i < topics.length; i++){
+            let elem = topics.eq(i)
+            let a = elem.find('a.tLink')
+            let title = a.text()
+            let href = a.attr('href')
+            topicsArray.push({ title, href })
+          }
+          
+          res.status(200).json(topicsArray)
         }
       })
     }

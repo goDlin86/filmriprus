@@ -25,9 +25,9 @@ const FilmDescription = ({ id }) => {
 
   const searchTorrents = async () => {
     const res = await fetch('api/getTorrents')
-    //const data = await res.json()
+    const data = await res.json()
 
-    console.log(res)
+    console.log(data)
   }
 
   return (
