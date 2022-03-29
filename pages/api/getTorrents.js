@@ -3,8 +3,9 @@ import { Cheerio } from 'cheerio'
 import iconv from 'iconv-lite'
 
 export default async (req, res) => {
-  //const { q } = req.query
+  const { q } = req.query
 
+  console.log(q)
   const options = {
     url: 'http://rutracker.org/forum/login.php', 
     form: {
@@ -23,12 +24,11 @@ export default async (req, res) => {
       console.log(error)
     } else {
       const [cookie] = response.headers['set-cookie'][0].split(';')
-      console.log(cookie)
 
       const options = {
         url: 'http://rutracker.org/forum/tracker.php',
         form: {
-          nm: 'Отец Father',
+          nm: 'Отец The Father',
           o: '4', //sort downloads
           s: '1' //asc order
         },
@@ -39,10 +39,11 @@ export default async (req, res) => {
         }
       }
 
-      request.post(options, async (error, response, body) => {
+      request.post(options, (error, response, body) => {
         if (error) {
           console.log(error)
         } else {
+          console.log(body)
           const body1 = iconv.decode(body, 'win1251')
           var $ = Cheerio.load(body1),
               topics = $('tr[class="hl-tr"]'),
