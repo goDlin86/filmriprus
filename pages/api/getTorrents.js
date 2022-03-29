@@ -57,7 +57,7 @@ export default async (req, res) => {
           }
           
           //res.status(200).json(topicsArray)
-          res.status(200).json({html: $.html()})
+          res.status(200).json({html: body1})
         }
       })
     }
