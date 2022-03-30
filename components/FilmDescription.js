@@ -26,10 +26,10 @@ const FilmDescription = ({ id }) => {
     }
   }
 
-  const searchTorrents = async () => {
-    setShowTorrents(!showTorrents)
+  const clickHeader = async (show) => {
+    setShowTorrents(show)
 
-    if (!torrents) {
+    if (show && !torrents) {
       const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.nameOriginal ?? ''} ${desc.year}`)
       const data = await res.json()
 
@@ -47,16 +47,21 @@ const FilmDescription = ({ id }) => {
               <div className={styles.info_header}>Жанр</div>
               <div className={styles.info_header}>Год</div>
               <div className={styles.info_header}>Рейтинг</div>
-              <div>{desc.countries.map((c, i) => <div key={i}>{c.country}</div>)}</div>
-              <div>{desc.genres.map((g, i) => <div key={i}>{g.genre}</div>)}</div>
+              <div>{desc.countries.slice(0, 2).map((c, i) => <div key={i}>{c.country}</div>)}</div>
+              <div>{desc.genres.slice(0, 2).map((g, i) => <div key={i}>{g.genre}</div>)}</div>
               <div className={styles.year}>{desc.year}</div>
               <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6.5 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
             </div>
-            <div>
-              <div onClick={searchTorrents}>Torrents</div>
-              {torrents ? <TorrentsView torrents={torrents} show={showTorrents} /> : 'Загрузка'}
+            <div className={styles.descheader}>
+              <div className={!showTorrents && styles.active} onClick={() => clickHeader(false)}>Описание</div>
+              <div className={showTorrents && styles.active} onClick={() => clickHeader(true)}>Torrents</div>
             </div>
-            {desc.description}
+            <div className={styles.desccontainer}>
+              {showTorrents ? 
+                (torrents ? <TorrentsView torrents={torrents} /> : 'Загрузка') :
+                desc.description
+              }
+            </div>
           </>
           : 'Загрузка'}
       </div>

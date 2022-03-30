@@ -70,10 +70,8 @@
   text-align: center;
 }
 .film .description {
-  overflow: scroll;
   padding: 10px 5px;
   background: rgba(0,0,0,0.7);
-  max-height: 320px;
 }
 .visible {
   visibility: visible;
@@ -119,11 +117,30 @@
   height: 450px;
 }
 
-.film .torrents {
-  position: absolute;
+.film .description .descheader {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
   background: rgba(0,0,0,0.5);
-  padding: 5px 0;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+}
+.film .description .desccontainer {
+  overflow: scroll;
+  height: 170px;
+  background: rgba(0,0,0,0.5);
+  padding: 5px;
+  border-radius: 0 0 10px 10px;
+}
+.film .description .descheader .active {
+  color: antiquewhite;
+}
+.film .description .torrents {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {
