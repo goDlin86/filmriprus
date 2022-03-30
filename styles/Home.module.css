@@ -26,6 +26,7 @@
   margin-left: 50px;
   color: antiquewhite;
   font-size: 26px;
+  text-transform: capitalize;
 }
 
 .main {
@@ -140,6 +141,7 @@
   display: grid;
   grid-template-columns: 80% 20%;
   align-items: center;
+  row-gap: 5px;
   font-size: 16px;
 }
 .film .description .torrents .link {

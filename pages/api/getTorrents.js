@@ -21,6 +21,7 @@ export default async (req, res) => {
   request.post(options, (error, response, body) => {
     if (error) {
       console.log(error)
+      res.status(200).json([])
     } else {
       const [cookie] = response.headers['set-cookie'][0].split(';')
 
@@ -43,6 +44,7 @@ export default async (req, res) => {
       request.post(options, (error, response, body) => {
         if (error) {
           console.log(error)
+          res.status(200).json([])
         } else {
           const body1 = iconv.decode(Buffer.from(body), 'win1251')
           var $ = cheerio.load(body1),

@@ -1,22 +1,29 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import FilmDescription from '../components/FilmDescription'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ru'
+dayjs.locale('ru')
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const [films, setFilms] = useState([])
+  const [date, setDate] = useState(dayjs())
 
   useEffect(() => {
     async function fetchFilms() {
-      const res = await fetch('api/getFilms')
+      const dateStart = date.endOf('week').toISOString().slice(0, -5)
+      const dateEnd = date.startOf('week').toISOString().slice(0, -5)
+
+      const res = await fetch(`api/getFilms?dateStart=${dateStart}&dateEnd=${dateEnd}`)
       const data = await res.json()
 
       const filmsByDate = data.reduce((result, item) => {
-        const i = result.findIndex(r => r.day === item[0])
+        const i = result.findIndex(r => r.day === item.premiereRu)
         if (i >= 0) {
             result[i].films.push(item)
         } else {
-            result.push({ day: item[0], films: [item] })
+            result.push({ day: item.premiereRu, films: [item] })
         }
         return result
       }, [])
@@ -39,7 +46,7 @@ export default function Home() {
       <div className={styles.header}>
         <div className={styles.logo}></div>
         FILMrip
-        <div className={styles.date}>Март 2022</div>
+        <div className={styles.date}>{date.format('MMMM YYYY')}</div>
       </div>
 
       <main className={styles.main}>
@@ -49,11 +56,11 @@ export default function Home() {
             <div className={styles.films_container}>
               {date.films.map((film, j) => (
                 <div className={styles.film} key={j}>
-                  <img alt={film[1]} src={film[3]} />
-                  <a href={`https://kinopoisk.ru/film/${film[2]}`} target='_blank' rel='noreferrer'>
-                    <h1>{film[1]}</h1>
+                  <img alt={film.nameRu} src={film.posterUrl} />
+                  <a href={`https://kinopoisk.ru/film/${film.kinopoiskId}`} target='_blank' rel='noreferrer'>
+                    <h1>{film.nameRu}</h1>
                   </a>
-                  <FilmDescription id={film[2]} />
+                  <FilmDescription id={film.kinopoiskId} />
                 </div>
               ))}
               <div className={styles.empty}></div>
