@@ -35,7 +35,7 @@ export default async (req, res) => {
         },
         headers: {
           'Accept-Encoding': 'gzip, deflate, br',
-          'Cookie': cookie, //+ ' opt_js={%22only_new%22:2}',
+          'Cookie': cookie,
           'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0'
         }
       }
@@ -50,10 +50,15 @@ export default async (req, res) => {
               topicsArray = []
           for (let i = 0; i < topics.length; i++){
             let elem = topics.eq(i)
+
             let a = elem.find('a.tLink')
             let title = a.text()
             let href = a.attr('href')
-            topicsArray.push({ title, href })
+
+            let aSize = elem.find('a.tr-dl')
+            let size = aSize.text()
+            let dlhref = aSize.attr('href')
+            topicsArray.push({ title, href, size, dlhref })
           }
           
           res.status(200).json(topicsArray)

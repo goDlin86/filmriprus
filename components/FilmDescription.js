@@ -24,7 +24,7 @@ const FilmDescription = ({ id }) => {
   }
 
   const searchTorrents = async () => {
-    const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.year}`)
+    const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.nameOriginal ?? ''} ${desc.year}`)
     const data = await res.json()
 
     console.log(data)
