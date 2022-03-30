@@ -58,7 +58,7 @@ const FilmDescription = ({ id }) => {
             </div>
             <div className={styles.desccontainer}>
               {showTorrents ? 
-                (torrents ? <TorrentsView torrents={torrents} /> : 'Загрузка') :
+                (torrents ? <TorrentsView torrents={torrents.slice(0, 5)} /> : 'Загрузка') :
                 desc.description
               }
             </div>
