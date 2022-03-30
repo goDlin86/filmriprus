@@ -29,9 +29,9 @@ export default async (req, res) => {
         encoding: null,
         gzip: true,
         form: {
-          nm: 'Отец The Father',
+          nm: q,
           o: '4', //sort downloads
-          s: '1' //asc order
+          s: '2' //desc order
         },
         headers: {
           'Accept-Encoding': 'gzip, deflate, br',
@@ -46,7 +46,7 @@ export default async (req, res) => {
         } else {
           const body1 = iconv.decode(Buffer.from(body), 'win1251')
           var $ = cheerio.load(body1),
-              topics = $('tr[class="hl-tr"]'),
+              topics = $('tr.hl-tr'),
               topicsArray = []
           for (let i = 0; i < topics.length; i++){
             let elem = topics.eq(i)
@@ -56,8 +56,7 @@ export default async (req, res) => {
             topicsArray.push({ title, href })
           }
           
-          //res.status(200).json(topicsArray)
-          res.status(200).json({html: body1})
+          res.status(200).json(topicsArray)
         }
       })
     }
