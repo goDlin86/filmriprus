@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import TorrentsView from './TorrentsView'
 import styles from '../styles/Home.module.css'
 
 const FilmDescription = ({ id }) => {
   const [show, setShow] = useState(false)
+  const [showTorrents, setShowTorrents] = useState(false)
   const [desc, setDesc] = useState(null)
+  const [torrents, setTorrents] = useState(null)
 
   const click = async () => {
     setShow(!show)
@@ -24,10 +27,14 @@ const FilmDescription = ({ id }) => {
   }
 
   const searchTorrents = async () => {
-    const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.nameOriginal ?? ''} ${desc.year}`)
-    const data = await res.json()
+    setShowTorrents(!showTorrents)
 
-    console.log(data)
+    if (!torrents) {
+      const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.nameOriginal ?? ''} ${desc.year}`)
+      const data = await res.json()
+
+      setTorrents(data)
+    }
   }
 
   return (
@@ -45,7 +52,10 @@ const FilmDescription = ({ id }) => {
               <div className={styles.year}>{desc.year}</div>
               <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6.5 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
             </div>
-            <div onClick={searchTorrents}>Torrents</div>
+            <div>
+              <div onClick={searchTorrents}>Torrents</div>
+              {torrents ? <TorrentsView torrents={torrents} show={showTorrents} /> : 'Загрузка'}
+            </div>
             {desc.description}
           </>
           : 'Загрузка'}
