@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import DateControl from '../components/DateControl'
 import FilmDescription from '../components/FilmDescription'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
@@ -32,7 +33,7 @@ export default function Home() {
     }
 
     fetchFilms()
-  }, [])
+  }, [date])
 
   return (
     <div className={styles.container}>
@@ -46,13 +47,13 @@ export default function Home() {
       <div className={styles.header}>
         <div className={styles.logo}></div>
         FILMrip
-        <div className={styles.date}>{date.format('MMMM YYYY')}</div>
+        <DateControl date={date} setDate={setDate} />
       </div>
 
       <main className={styles.main}>
         {films.map((date, i) => (
           <div key={i}>
-            <div className={styles.day}>{new Date(date.day).toLocaleDateString('ru-Ru', { day: 'numeric', weekday: 'long' })}</div>
+            <div className={styles.day}>{dayjs(date.day).format('D, dddd')}</div>
             <div className={styles.films_container}>
               {date.films.map((film, j) => (
                 <div className={styles.film} key={j}>

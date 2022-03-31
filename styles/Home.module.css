@@ -21,13 +21,7 @@
   mask-size: cover;
   background-color: antiquewhite;
 }
-.header .date {
-  display: inline-block;
-  margin-left: 50px;
-  color: antiquewhite;
-  font-size: 26px;
-  text-transform: capitalize;
-}
+
 
 .main {
   margin-top: 70px;
@@ -150,9 +144,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .header .date {
-    margin-left: 30px;
-  }
   .day {
     text-align: center;
   }
