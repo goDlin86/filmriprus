@@ -56,16 +56,18 @@ export default function Home() {
           <div key={i}>
             <div className={styles.day}>{dayjs(date.day).format('D, dddd')}</div>
             <div className={styles.films_container}>
-              {date.films.map((film, j) => (
-                <div className={styles.film} key={j}>
-                  <img alt={film.nameRu} src={film.posterUrl} />
-                  <a href={`https://kinopoisk.ru/film/${film.kinopoiskId}`} target='_blank' rel='noreferrer'>
-                    <h1>{film.nameRu}</h1>
-                  </a>
-                  <FilmDescription id={film.kinopoiskId} />
-                </div>
-              ))}
-              <div className={styles.empty}></div>
+              <div className={styles.films}>
+                {date.films.map((film, j) => (
+                  <div className={styles.film} key={j}>
+                    <img alt={film.nameRu} src={film.posterUrl} />
+                    <a href={`https://kinopoisk.ru/film/${film.kinopoiskId}`} target='_blank' rel='noreferrer'>
+                      <h1>{film.nameRu}</h1>
+                    </a>
+                    <FilmDescription id={film.kinopoiskId} />
+                  </div>
+                ))}
+                <div className={styles.empty}></div>
+              </div>
             </div>
           </div>
         )) : 'Загрузка'}

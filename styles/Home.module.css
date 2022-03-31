@@ -36,15 +36,20 @@
 .films_container {
   overflow: scroll;
   margin: 20px -20px;
-  display: flex;
   scroll-snap-type: x proximity;
+}
+.films {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: max-content;
 }
 
 .film {
   position: relative;
   margin-left: 20px;
-  min-width: 300px;
-  height: 450px;
+  max-width: 400px;
+  aspect-ratio: 1 / 1.5;
   border-radius: 10px;
   overflow: hidden;
   background-color: black;
@@ -53,8 +58,13 @@
 .empty {
   min-width: 20px;
 }
+.film img {
+  display: block;
+  width: 100%;
+}
 .film > a {
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   background: linear-gradient(rgba(0,0,0,0.8) 50%, transparent);
@@ -107,12 +117,6 @@
   background: rgba(0,0,0,0.7);
   cursor: pointer;
 }
-.film img {
-  display: block;
-  position: absolute;
-  width: 300px;
-  height: 450px;
-}
 
 .film .description .descheader {
   display: grid;
@@ -125,7 +129,7 @@
 }
 .film .description .desccontainer {
   overflow: scroll;
-  height: 170px;
+  height: 250px;
   background: rgba(0,0,0,0.5);
   padding: 5px;
   border-radius: 0 0 10px 10px;
@@ -148,5 +152,13 @@
 @media only screen and (max-width: 768px) {
   .day {
     text-align: center;
+  }
+}
+@media only screen and (max-width: 468px) {
+  .film {
+    max-width: 320px;
+  }
+  .film .description .desccontainer {
+    height: 200px;
   }
 }
