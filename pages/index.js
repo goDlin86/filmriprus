@@ -32,6 +32,7 @@ export default function Home() {
       setFilms(filmsByDate)
     }
 
+    setFilms([])
     fetchFilms()
   }, [date])
 
@@ -51,7 +52,7 @@ export default function Home() {
       </div>
 
       <main className={styles.main}>
-        {films.map((date, i) => (
+        {films.length > 0 ? films.map((date, i) => (
           <div key={i}>
             <div className={styles.day}>{dayjs(date.day).format('D, dddd')}</div>
             <div className={styles.films_container}>
@@ -67,7 +68,7 @@ export default function Home() {
               <div className={styles.empty}></div>
             </div>
           </div>
-        ))}
+        )) : 'Загрузка'}
       </main>
     </div>
   )

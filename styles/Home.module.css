@@ -37,6 +37,7 @@
   overflow: scroll;
   margin: 20px -20px;
   display: flex;
+  scroll-snap-type: x proximity;
 }
 
 .film {
@@ -47,6 +48,7 @@
   border-radius: 10px;
   overflow: hidden;
   background-color: black;
+  scroll-snap-align: center;
 }
 .empty {
   min-width: 20px;

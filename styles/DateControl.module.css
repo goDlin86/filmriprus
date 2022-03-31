@@ -2,7 +2,7 @@
   display: inline-block;
   margin-left: 50px;
   color: antiquewhite;
-  font-size: 26px;
+  font-size: 36px;
 }
 .button {
   display: inline-block;
@@ -13,6 +13,12 @@
 }
 .button:hover {
   opacity: 1;
+}
+.date .period {
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {

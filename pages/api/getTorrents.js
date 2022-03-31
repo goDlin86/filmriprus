@@ -63,7 +63,7 @@ export default async (req, res) => {
             topicsArray.push({ title, href, size, dlhref })
           }
           
-          res.status(200).json(topicsArray)
+          res.status(200).json(topicsArray.slice(0, 7))
         }
       })
     }
