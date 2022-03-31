@@ -41,14 +41,13 @@
 .films {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   width: max-content;
 }
 
 .film {
   position: relative;
   margin-left: 20px;
-  max-width: 400px;
+  width: min(400px, 100vw - 60px);
   aspect-ratio: 1 / 1.5;
   border-radius: 10px;
   overflow: hidden;
@@ -155,9 +154,6 @@
   }
 }
 @media only screen and (max-width: 468px) {
-  .film {
-    max-width: 320px;
-  }
   .film .description .desccontainer {
     height: 200px;
   }
