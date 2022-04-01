@@ -1,12 +1,13 @@
 .date {
   display: inline-block;
+  position: relative;
   margin-left: 50px;
   color: antiquewhite;
   font-size: 36px;
 }
 .button {
   display: inline-block;
-  padding: 0 20px;
+  padding: 0 15px;
   cursor: pointer;
   opacity: 0.5;
   transition: 0.3s opacity;
@@ -16,9 +17,19 @@
 }
 .date .period {
   display: inline-block;
+  width: 70px;
   text-align: center;
   line-height: 1;
   font-size: 16px;
+}
+.date .week {
+  position: absolute;
+  font-size: 13px;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  text-align: center;
+  color: rgb(250 235 215 / 30%);
 }
 
 @media only screen and (max-width: 768px) {

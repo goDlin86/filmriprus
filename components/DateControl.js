@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 dayjs.locale('ru')
@@ -13,6 +12,28 @@ const DateControl = ({ date, setDate }) => {
     setDate(date.add(i, 'week'))
   }
 
+  const diff = Math.ceil(date.diff(dayjs(), 'day') / 7)
+  let week = ''
+  if (diff === 0) {
+    week = 'текущая неделя'
+  } else if (diff > 0) {
+    if (diff === 1) {
+      week = 'следующая неделя'
+    } else if (diff < 5) {
+      week = `через ${diff} недели`
+    } else {
+      week = `через ${diff} недель`
+    }
+  } else {
+    if (diff === -1) {
+      week = 'прошлая неделя'
+    } else if (diff > -5) {
+      week = `${Math.abs(diff)} недели назад`
+    } else {
+      week = `${Math.abs(diff)} недель назад`
+    }
+  }
+
   return (
     <div className={styles.date}>
       <div className={styles.button} onClick={() => changeDate(-1)}>&#60;</div>
@@ -20,7 +41,7 @@ const DateControl = ({ date, setDate }) => {
         <div>{weekStart}</div>
         <div>{weekEnd}</div>
       </div>
-      {/* {date.diff(dayjs(), 'week')} */}
+      <div className={styles.week}>{week}</div>
       <div className={styles.button} onClick={() => changeDate(1)}>&#62;</div>
     </div>
   )
