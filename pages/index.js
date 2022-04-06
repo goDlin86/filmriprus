@@ -7,6 +7,7 @@ import 'dayjs/locale/ru'
 dayjs.locale('ru')
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
   const [films, setFilms] = useState([])
   const [date, setDate] = useState(dayjs())
@@ -41,8 +42,10 @@ export default function Home() {
       <Head>
         <title>FILMrip</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#ffffff"></meta>
+        <meta name="theme-color" content="#0d1117" />
+        <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
         <link rel="icon" href="/movie.svg" />
+        <link rel="mask-icon" href="/movie.svg" color="white" />
       </Head>
 
       <div className={styles.header}>

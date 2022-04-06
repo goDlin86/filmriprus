@@ -4,13 +4,8 @@ dayjs.locale('ru')
 import styles from '../styles/DateControl.module.css'
 
 const DateControl = ({ date, setDate }) => {
-
   const weekStart = date.startOf('week').format('D MMMM')
   const weekEnd = date.endOf('week').format('D MMMM')
-
-  const changeDate = (i) => {
-    setDate(date.add(i, 'week'))
-  }
 
   const diff = Math.ceil(date.diff(dayjs(), 'day') / 7)
   let week = ''

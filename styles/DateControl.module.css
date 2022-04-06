@@ -17,10 +17,14 @@
 }
 .date .period {
   display: inline-block;
-  width: 70px;
+  width: 80px;
   text-align: center;
   line-height: 1;
   font-size: 16px;
+  transition: transform 0.3s ease-in;
+}
+.date .period.out {
+  transform: translateY(20px);
 }
 .date .week {
   position: absolute;
