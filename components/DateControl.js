@@ -29,6 +29,10 @@ const DateControl = ({ date, setDate }) => {
     }
   }
 
+  const changeDate = (i) => {
+    setDate(date.add(i, 'week'))
+  }
+
   return (
     <div className={styles.date}>
       <div className={styles.button} onClick={() => changeDate(-1)}>&#60;</div>
