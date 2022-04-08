@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 dayjs.locale('ru')
@@ -36,10 +38,18 @@ const DateControl = ({ date, setDate }) => {
   return (
     <div className={styles.date}>
       <div className={styles.button} onClick={() => changeDate(-1)}>&#60;</div>
-      <div className={styles.period}>
-        <div>{weekStart}</div>
-        <div>{weekEnd}</div>
-      </div>
+      <TransitionGroup className={styles.period_container}>
+        <CSSTransition 
+          key={date}
+          timeout={500}
+          classNames='fade'
+        >
+          <div className={styles.period}>
+            <div>{weekStart}</div>
+            <div>{weekEnd}</div>
+          </div>
+        </CSSTransition>
+      </TransitionGroup>
       <div className={styles.week}>{week}</div>
       <div className={styles.button} onClick={() => changeDate(1)}>&#62;</div>
     </div>

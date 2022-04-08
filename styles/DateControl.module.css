@@ -15,16 +15,19 @@
 .button:hover {
   opacity: 1;
 }
-.date .period {
+.date .period_container {
+  position: relative;
   display: inline-block;
   width: 80px;
+  height: 32px;
+}
+.date .period {
+  position: absolute;
+  width: 80px;
+  height: 32px;
   text-align: center;
   line-height: 1;
   font-size: 16px;
-  transition: transform 0.3s ease-in;
-}
-.date .period.out {
-  transform: translateY(20px);
 }
 .date .week {
   position: absolute;
