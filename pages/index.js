@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import DateControl from '../components/DateControl'
 import FilmDescription from '../components/FilmDescription'
 import dayjs from 'dayjs'

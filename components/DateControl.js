@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
@@ -6,6 +5,7 @@ dayjs.locale('ru')
 import styles from '../styles/DateControl.module.css'
 
 const DateControl = ({ date, setDate }) => {
+
   const weekStart = date.startOf('week').format('D MMMM')
   const weekEnd = date.endOf('week').format('D MMMM')
 

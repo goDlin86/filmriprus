@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import FilmHeader from './FilmHeader'
 import TorrentsView from './TorrentsView'
 import styles from '../styles/Home.module.css'
 
 const FilmDescription = ({ id }) => {
   const [show, setShow] = useState(false)
-  const [showTorrents, setShowTorrents] = useState(false)
+  const [tab, setTab] = useState('desc')
   const [desc, setDesc] = useState(null)
   const [torrents, setTorrents] = useState(null)
 
@@ -20,16 +21,15 @@ const FilmDescription = ({ id }) => {
         }
       })
       const data = await res.json()
-      console.log(data)
 
       setDesc(data)
     }
   }
 
-  const clickHeader = async (show) => {
-    setShowTorrents(show)
+  const clickHeader = async (active) => {
+    setTab(active)
 
-    if (show && !torrents) {
+    if (active === 'torrents' && !torrents) {
       const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.nameOriginal ?? ''} ${desc.year}`)
       const data = await res.json()
 
@@ -42,24 +42,15 @@ const FilmDescription = ({ id }) => {
       <div className={show ? `${styles.description} ${styles.visible}` : `${styles.description} ${styles.hidden}`}>
         {desc ? 
           <>
-            <div className={styles.info}>
-              <div className={styles.info_header}>Страна</div>
-              <div className={styles.info_header}>Жанр</div>
-              <div className={styles.info_header}>Год</div>
-              <div className={styles.info_header}>Рейтинг</div>
-              <div>{desc.countries.slice(0, 2).map((c, i) => <div key={i}>{c.country}</div>)}</div>
-              <div>{desc.genres.slice(0, 2).map((g, i) => <div key={i}>{g.genre}</div>)}</div>
-              <div className={styles.year}>{desc.year}</div>
-              <div>{desc.ratingKinopoisk ? <span className={desc.ratingKinopoisk > 6.5 ? styles.rating_green : styles.rating_yellow}>{desc.ratingKinopoisk}</span> : '-'}</div>
-            </div>
+            <FilmHeader desc={desc} />
             <div className={styles.descheader}>
-              <div className={!showTorrents && styles.active} onClick={() => clickHeader(false)}>Описание</div>
-              <div className={showTorrents && styles.active} onClick={() => clickHeader(true)}>Torrents</div>
+              <div className={tab === 'desc' ? styles.active : null} onClick={() => clickHeader('desc')}>Описание</div>
+              <div className={tab === 'torrents' ? styles.active : null} onClick={() => clickHeader('torrents')}>Torrents</div>
             </div>
             <div className={styles.desccontainer}>
-              {showTorrents ? 
-                (torrents ? (torrents.length > 0 ? <TorrentsView torrents={torrents} /> : 'Не найдено') : 'Загрузка') :
-                desc.description
+              {tab === 'desc' ? 
+                desc.description : 
+                torrents ? <TorrentsView torrents={torrents} /> : 'Загрузка'
               }
             </div>
           </>
