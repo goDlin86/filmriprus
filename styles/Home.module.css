@@ -38,6 +38,9 @@
   margin: 20px -20px;
   scroll-snap-type: x proximity;
 }
+.films_container::-webkit-scrollbar {
+  display: none;
+}
 .films {
   display: flex;
   flex-direction: row;
