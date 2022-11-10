@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import DateControl from '../components/DateControl'
 import FilmDescription from '../components/FilmDescription'
 
+import styles from '../styles/Home.module.css'
+
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 dayjs.locale('ru')
