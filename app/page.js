@@ -45,7 +45,7 @@ export default function Page() {
     }, [date])
 
     return (
-        <>
+        <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.logo}></div>
                 FILMrip
@@ -73,6 +73,6 @@ export default function Page() {
                     </div>
                 )) : 'Загрузка'}
             </main>
-        </>
+        </div>
     )
 }
