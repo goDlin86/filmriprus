@@ -1,6 +1,10 @@
 import faunadb, { query as q } from 'faunadb'
 
 export default async (req, res) => {
+  if (req.query.secret !== process.env.SECRET_TOKEN) {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+
   const { year, month } = req.query
 
   const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=${year}&month=${month}`, {
@@ -14,9 +18,26 @@ export default async (req, res) => {
 
   const client = new faunadb.Client({ secret: process.env.DBSECRET })
 
+  const films = await data.items.reduce(async (acc, v) => {
+    const result = await client.query(
+      q.Paginate(
+        q.Match(
+          q.Index('titles'),
+          [v.nameRu, v.year]
+        )
+      )
+    )
+
+    if (result.data.length) {
+      return acc
+    }
+
+    return (await acc).concat(v)
+  }, [])
+
   client.query(
     q.Map(
-      data.items,
+      films,
       q.Lambda(
         'film',
         q.Create(
@@ -27,5 +48,5 @@ export default async (req, res) => {
     )
   )
 
-  res.status(200).json(data)
+  res.status(200).json(films)
 }

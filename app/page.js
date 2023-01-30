@@ -9,15 +9,10 @@ import styles from '../styles/Home.module.css'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
 dayjs.locale('ru')
-import ReactGA from 'react-ga4'
-
-ReactGA.initialize('G-ZDFM6LXWM7')
 
 export default function Page() {
     const [films, setFilms] = useState([])
     const [date, setDate] = useState(dayjs())
-
-    ReactGA.send('pageview')
 
     useEffect(() => {
         async function fetchFilms() {

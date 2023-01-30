@@ -1,0 +1,23 @@
+name: db
+
+on:
+  schedule:
+    - cron:  '0 12 * * 3'
+
+jobs:
+  db-get:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get current time
+      uses: josStorer/get-current-time@v2.0.2
+      id: current-time
+      with:
+        format: MMMM
+    - name: send to db
+      env:
+        YEAR: "${{ steps.current-time.outputs.year }}"
+        MONTH: "${{ steps.current-time.outputs.formattedTime }}"
+      uses: wei/curl@v1
+      with:
+        args: https://filmriprus.vercel.app/api/filmsdb?year=$YEAR&month=$MONTH&secret=${{ secrets.SECRET_TOKEN }}
