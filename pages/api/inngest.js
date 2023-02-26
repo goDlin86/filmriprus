@@ -9,7 +9,7 @@ const getFilms = inngest.createFunction(
   async ({ event, step }) => {
     const month = new Date().toLocaleString('en-EN', { month: 'long' })
     const year = new Date().getFullYear()
-    const res = await fetch(`https://filmriprus.vercel.app/api/filmsdb?year=${year}&month=${month}&secret=` + process.env.FILMRIP_TOKEN)
+    const res = await fetch(`https://filmriprus.vercel.app/api/filmsdb?year=${year}&month=${month}&secret=` + process.env.SECRET_TOKEN)
     return await res.json()
   }
 )
