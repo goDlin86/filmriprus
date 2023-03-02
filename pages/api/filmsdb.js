@@ -15,6 +15,7 @@ export default async (req, res) => {
     }
   })
   const data = await response.json()
+  console.log(data)
 
   const client = new faunadb.Client({ secret: process.env.DBSECRET })
 
