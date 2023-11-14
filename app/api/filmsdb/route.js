@@ -1,11 +1,16 @@
+import { NextResponse } from 'next/server'
 import faunadb, { query as q } from 'faunadb'
 
-export default async (req, res) => {
-  if (req.query.secret !== process.env.SECRET_TOKEN) {
-    return res.status(401).json({ message: 'Invalid token' });
+export async function GET(request) {
+  const { searchParams } = new URL(request.url)
+  const secret = searchParams.get('secret')
+
+  if (secret !== process.env.SECRET_TOKEN) {
+    return NextResponse.json({ error: 'Invalid token' }, { status: 401 })
   }
 
-  const { year, month } = req.query
+  const year = searchParams.get('year')
+  const month = searchParams.get('month')
 
   const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=${year}&month=${month}`, {
     method: 'GET',
@@ -48,5 +53,5 @@ export default async (req, res) => {
     )
   )
 
-  res.status(200).json(films)
+  return NextResponse.json(films)
 }

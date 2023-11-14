@@ -1,7 +1,7 @@
 import { Inngest } from 'inngest'
 import { serve } from 'inngest/next'
 
-export const inngest = new Inngest({ name: 'filmriprus' })
+const inngest = new Inngest({ id: 'filmriprus' })
 
 const getFilms = inngest.createFunction(
   { name: 'Get films' }, 
@@ -14,4 +14,9 @@ const getFilms = inngest.createFunction(
   }
 )
 
-export default serve(inngest, [ getFilms ])
+export const { GET, POST, PUT } = serve({
+  client: inngest,
+  functions: [
+    getFilms
+  ],
+})

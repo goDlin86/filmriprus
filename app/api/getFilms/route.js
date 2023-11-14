@@ -1,7 +1,10 @@
+import { NextResponse } from 'next/server'
 import faunadb, { query as q } from 'faunadb'
 
-export default async (req, res) => {
-  const { dateStart, dateEnd } = req.query
+export async function GET(request) {
+  const { searchParams } = new URL(request.url)
+  const dateStart = searchParams.get('dateStart')
+  const dateEnd = searchParams.get('dateEnd')
 
   const client = new faunadb.Client({ secret: process.env.DBSECRET })
 
@@ -19,5 +22,5 @@ export default async (req, res) => {
     )
   )
 
-  res.status(200).json(data.data.map(f => f.data))
+  return NextResponse.json(data.data.map(f => f.data))
 }
