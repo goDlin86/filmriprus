@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server'
 import * as cheerio from 'cheerio'
 import iconv from 'iconv-lite'
 
@@ -23,6 +22,8 @@ export async function GET(request) {
 
     if (r.headers['set-cookie']) {
       const [cookie] = r.headers['set-cookie'][0].split(';')
+
+      console.log(cookie)
 
       const formDatat = new FormData()
       formDatat.append('nm', q)
@@ -56,17 +57,17 @@ export async function GET(request) {
         topicsArray.push({ title, href, size, dlhref })
       }
       
-      return NextResponse.json(topicsArray.slice(0, 7))
+      return Response.json(topicsArray.slice(0, 7))
     }
     else
     {
-      return NextResponse.json({ error: 'failed to fetch data' })
+      return Response.json({ error: 'failed to fetch data' })
     }
     
 
   } catch (e) {
     console.log(e)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    return Response.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
 

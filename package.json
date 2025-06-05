@@ -7,19 +7,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
-    "dayjs": "^1.11.0",
-    "faunadb": "^4.5.2",
+    "@vercel/postgres": "^0.10.0",
+    "cheerio": "^1",
+    "dayjs": "^1",
     "iconv-lite": "^0.6.3",
     "inngest": "^3",
-    "next": "^14",
+    "next": "^15",
     "nextjs-google-analytics": "^2.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19",
+    "react-dom": "^19",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
-    "eslint": "^8.9.0",
-    "eslint-config-next": "^14"
+    "eslint": "^9",
+    "eslint-config-next": "^15"
   }
 }

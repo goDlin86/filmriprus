@@ -16,18 +16,18 @@ export default function Page() {
 
     useEffect(() => {
         async function fetchFilms() {
-            const dateStart = date.endOf('week').toISOString().slice(0, -5)
-            const dateEnd = date.startOf('week').toISOString().slice(0, -5)
+            const dateStart = date.startOf('week').format('YYYY-MM-DD')
+            const dateEnd = date.endOf('week').format('YYYY-MM-DD')
         
             const res = await fetch(`api/getFilms?dateStart=${dateStart}&dateEnd=${dateEnd}`)
             const data = await res.json()
         
             const filmsByDate = data.reduce((result, item) => {
-                const i = result.findIndex(r => r.day === item.premiereRu)
+                const i = result.findIndex(r => r.day === item.premiere)
                 if (i >= 0) {
                     result[i].films.push(item)
                 } else {
-                    result.push({ day: item.premiereRu, films: [item] })
+                    result.push({ day: item.premiere, films: [item] })
                 }
                 return result
             }, [])
@@ -55,11 +55,11 @@ export default function Page() {
                         <div className={styles.films}>
                             {date.films.map((film, j) => (
                             <div className={styles.film} key={j}>
-                                <img alt={film.nameRu} src={film.posterUrl} />
-                                <a href={`https://kinopoisk.ru/film/${film.kinopoiskId}`} target='_blank' rel='noreferrer'>
-                                <h1>{film.nameRu}</h1>
+                                <img alt={film.name} src={film.posterurl} />
+                                <a href={`https://kinopoisk.ru/film/${film.kinopoiskid}`} target='_blank' rel='noreferrer'>
+                                <h1>{film.name}</h1>
                                 </a>
-                                <FilmDescription id={film.kinopoiskId} />
+                                <FilmDescription id={film.kinopoiskid} />
                             </div>
                             ))}
                             <div className={styles.empty}></div>

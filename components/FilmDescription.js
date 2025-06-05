@@ -33,6 +33,8 @@ const FilmDescription = ({ id }) => {
       const res = await fetch(`api/getTorrents?q=${desc.nameRu} ${desc.nameEn ?? ''} ${desc.nameOriginal ?? ''} ${desc.year}`)
       const data = await res.json()
 
+      console.log(data)
+
       setTorrents(data)
     }
   }
