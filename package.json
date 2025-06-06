@@ -7,16 +7,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "@vercel/postgres": "^0.10.0",
     "cheerio": "^1",
     "dayjs": "^1",
     "iconv-lite": "^0.6.3",
     "inngest": "^3",
+    "motion": "^12.16.0",
     "next": "^15",
-    "nextjs-google-analytics": "^2.3.0",
     "react": "^19",
-    "react-dom": "^19",
-    "react-transition-group": "^4.4.2"
+    "react-dom": "^19"
   },
   "devDependencies": {
     "eslint": "^9",
