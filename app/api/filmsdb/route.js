@@ -19,16 +19,19 @@ export async function GET(request) {
   const data = await response.json()
 
   try {
-    data.items.map(async film => await sql`
-      INSERT INTO filmriprus (kinopoiskid, name, posterurl, premiere)
-      VALUES (${film.kinopoiskId}, ${film.nameRu}, ${film.posterUrl}, ${film.premiereRu})
-      ON CONFLICT (kinopoiskId) DO NOTHING
-    `)
+    const res = await Promise.all(data.items.map(async film => {
+      const q = await sql`
+        INSERT INTO filmriprus (kinopoiskid, name, posterurl, premiere)
+        VALUES (${film.kinopoiskId}, ${film.nameRu}, ${film.posterUrl}, ${film.premiereRu})
+        ON CONFLICT (kinopoiskId) DO NOTHING
+      `
+      return { count: q.rowCount }
+    }))
+
+    return Response.json(res)
   }
   catch (e) {
     console.log(e)
     return Response.json({ message: e.message }, { status: 500 })
   }
-
-  return Response.json(data)
 }
